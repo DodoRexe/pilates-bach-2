@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<title>Ficha Médica - Pilates Bach</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<script>
+
+function mostrar(id){
+document.getElementById(id).style.display = "block";
+}
+
+function ocultar(id){
+document.getElementById(id).style.display = "none";
+}
+
+</script>
+
+<body>
+
+<div class="container">
+
+<h1>Ficha Médica - Pilates Bach</h1>
+
+<form>
+
+Nombre Completo:
+<input type="text" name="nombre">
+
+Ocupación:
+<input type="text" name="ocupacion">
+
+Fecha de nacimiento:
+<input type="date" name="nacimiento">
+
+<h2>🩺 Patologías</h2>
+
+<div class="grupo">
+
+<div class="pregunta">
+<label>Hipertensión arterial:</label>
+
+<div class="opciones">
+<input type="radio" name="hipertension" value="si"> Sí
+<input type="radio" name="hipertension" value="no"> No
+</div>
+
+</div>
+<div class="pregunta">
+<label>Enfermedad cardiovascular:</label>
+<div class="opciones">
+<input type="radio" name="cardio" value="si"> Sí
+<input type="radio" name="cardio" value="no"> No
+</div>
+</div>
+
+<div class="pregunta">
+<label>Diabetes:</label>
+<div class="opciones">
+<input type="radio" name="diabetes" value="si"> Sí
+<input type="radio" name="diabetes" value="no"> No
+</div>
+</div>
+
+<div class="pregunta">
+<label>Osteoporosis:</label>
+<div class="opciones">
+<input type="radio" name="osteoporosis" value="si"> Sí
+<input type="radio" name="osteoporosis" value="no"> No
+</div>
+</div>
+
+<div class="pregunta">
+<label>Esclerosis múltiple:</label>
+<div class="opciones">
+<input type="radio" name="esclerosis" value="si"> Sí
+<input type="radio" name="esclerosis" value="no"> No
+</div>
+</div>
+
+<div class="pregunta">
+<label>Fibromialgia:</label>
+<div class="opciones">
+<input type="radio" name="fibromialgia" value="si"> Sí
+<input type="radio" name="fibromialgia" value="no"> No
+</div>
+</div>
+
+<div class="pregunta">
+<label>Asma:</label>
+<div class="opciones">
+<input type="radio" name="asma" value="si"> Sí
+<input type="radio" name="asma" value="no"> No
+</div>
+</div>
+
+<div class="pregunta">
+<label>Hernia abdominal o de Hiato:</label>
+<div class="opciones">
+<input type="radio" name="hernia" value="si"> Sí
+<input type="radio" name="hernia" value="no"> No
+</div>
+</div>
+
+</div>
+
+<h2>🩻 A nivel óseo</h2>
+
+<div class="radio">
+Artritis o artrosis:
+<input type="radio" name="artritis" value="si"> Sí
+<input type="radio" name="artritis" value="no"> No
+</div>
+
+<div class="radio">
+Escoliosis:
+<input type="radio" name="escoliosis" value="si"> Sí
+<input type="radio" name="escoliosis" value="no"> No
+</div>
+
+<div class="radio">
+Cifosis:
+<input type="radio" name="cifosis" value="si"> Sí
+<input type="radio" name="cifosis" value="no"> No
+</div>
+
+<div class="radio">
+Lordosis:
+<input type="radio" name="lordosis" value="si" onclick="mostrar('lordosis_detalle')"> Sí
+<input type="radio" name="lordosis" value="no" onclick="ocultar('lordosis_detalle')"> No
+<div id="lordosis_detalle" style="display:none;">
+Especifique donde:
+<textarea name="lordosis_info"></textarea>
+</div>
+<br>
+<br>
+Hernia de disco:
+<input type="radio" name="hernia_disco" value="si" onclick="mostrar('hernia_detalle')"> Sí
+<input type="radio" name="hernia_disco" value="no" onclick="ocultar('hernia_detalle')"> No
+
+<div id="hernia_detalle" style="display:none;">
+Especifique tipo y lugar:
+<textarea name="hernia_info"></textarea>
+</div>
+<br>
+<br>
+<div class="radio">
+¿Ha sido usted operado?
+<input type="radio" name="operado" value="si"> Sí
+<input type="radio" name="operado" value="no"> No
+</div>
+
+<div class="radio">
+¿Tiene prótesis?
+<input type="radio" name="protesis" value="si" onclick="mostrar('protesis_detalle')"> Sí
+<input type="radio" name="protesis" value="no" onclick="ocultar('protesis_detalle')"> No
+
+<div id="protesis_detalle" style="display:none;">
+Indique la zona:
+<textarea name="protesis_info"></textarea>
+</div>
+<br>
+<br>
+
+<div class="radio">
+Dolencias o molestias:
+<textarea name="dolencias"></textarea>
+</div>
+<br>
+
+<button class="botonWhatsapp" onclick="enviarWhatsapp()">Enviar ficha por WhatsApp</button>
+
+</form>
+
+</div>
+
+<script>
+
+function valorRadio(nombre){
+    let radios = document.getElementsByName(nombre);
+        for(let i=0;i<radios.length;i++){
+            if(radios[i].checked){
+return radios[i].value;
+}
+}
+return "No especificado";
+}
+
+
+function enviarWhatsapp(){
+   let nombre = document.querySelector('[name="nombre"]').value;
+let ocupacion = document.querySelector('[name="ocupacion"]').value;
+let nacimiento = document.querySelector('[name="nacimiento"]').value;
+
+let hipertension = valorRadio("hipertension");
+let cardio = valorRadio("cardio");
+let diabetes = valorRadio("diabetes");
+let osteoporosis = valorRadio("osteoporosis");
+let asma = valorRadio("asma");
+let lordosis = valorRadio("lordosis");
+let lordosis_info = document.querySelector('[name="lordosis_info"]').value;
+let hernia = valorRadio("hernia");
+let hernia_info = document.querySelector('[name="hernia_info"]').value;
+let artritis = valorRadio("artritis");
+let escoliosis = valorRadio("escoliosis");
+let protesis = valorRadio("protesis");
+let protesis_info = document.querySelector('[name="protesis_info"]').value;
+
+let dolencias = document.querySelector('[name="dolencias"]').value;
+
+let mensaje =
+" FICHA MÉDICA PILATES %0A%0A"+
+" Nombre: "+nombre+"%0A"+
+" Ocupación: "+ocupacion+"%0A"+
+" Nacimiento: "+nacimiento+"%0A%0A"+
+
+" Patologías %0A"+
+"Hipertensión: "+hipertension+"%0A"+
+"Cardiovascular: "+cardio+"%0A"+
+"Diabetes: "+diabetes+"%0A"+
+"Osteoporosis: "+osteoporosis+"%0A"+
+"Asma: "+asma+"%0A"+
+"Lordosis: "+lordosis+"%0A"+
+"Lordosis lugar: "+lordosis_info+"%0A"+
+"Hernia: "+hernia+"%0A"+
+"Hernia lugar: "+hernia_info+"%0A"+
+"Artritis: "+artritis+"%0A"+
+"Escoliosis: "+escoliosis+"%0A"+
+"Protesis: "+protesis+"%0A"+
+"Protesis lugar: "+protesis_info+"%0A"+
+" Dolencias: "+dolencias+"%0A";
+
+let telefono = "5492233413397";
+
+let url = "https://wa.me/"+telefono+"?text="+mensaje;
+
+window.open(url, "_blank");
+
+}
+
+</script>
+
+</body>
+</html>
